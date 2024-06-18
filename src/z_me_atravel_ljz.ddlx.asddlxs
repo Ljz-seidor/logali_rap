@@ -1,0 +1,49 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI:{ 
+    headerInfo: { 
+     typeName: 'Travel',
+     typeNamePlural: 'Travels',
+     title: { 
+        type: #STANDARD,
+        value: 'TravelID'
+        }
+     
+    }
+    
+}
+annotate view Z_C_TRAVEL_LJZ
+    with 
+{
+    @UI.facet: [ { 
+                   id: 'Travel', 
+                   purpose: #STANDARD,
+                   type: #IDENTIFICATION_REFERENCE,
+                   label: 'Travel',
+                   position: 10
+                  } ,
+                  { 
+                    id: 'Booking',
+                   purpose: #STANDARD,
+                   type: #LINEITEM_REFERENCE,
+                   label: 'Booking',
+                   position: 20,
+                   targetElement: '_Booking'
+                  }
+               ]
+    
+    @UI: { 
+            lineItem: [{
+                         position: 10,
+                         exclude: true,
+                         importance: #HIGH
+                       }],
+            identification: [{
+                                position: 10,
+                                label: 'Travel ID [1,...,999999999]'
+                            }]                       
+         }
+    @Search.defaultSearchElement: true
+    TravelId;
+   
+}

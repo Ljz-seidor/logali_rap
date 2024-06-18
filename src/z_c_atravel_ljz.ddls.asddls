@@ -1,5 +1,6 @@
 @EndUserText.label: 'Consumption - Travel Approval'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
+@Metadata.allowExtensions: true
 define root view entity Z_C_ATRAVEL_LJZ
   as projection on Z_I_TRAVEL_LJZ
 {
