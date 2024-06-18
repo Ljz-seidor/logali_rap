@@ -8,6 +8,7 @@ define view entity Z_C_BOOKING_LJZ
   key BookingId     as BookingId,
       BookingDate   as BookingDate,
       CustomerId    as CustomerID,
+      @ObjectModel.text.element: [ 'CarrierName' ]
       CarrierId     as CarrierID,
       _Carrier.Name as CarrierName,
       ConnectionId  as ConnectionID,
@@ -20,8 +21,8 @@ define view entity Z_C_BOOKING_LJZ
       LastChangedAt as LastChangedAt,
 
       /* Associations */
-      _Travel : redirected to parent z_c_travel_ljz,
-      _BookingSupplement : redirected to composition child z_c_booksuppl_ljz,
+      _Travel : redirected to parent Z_C_TRAVEL_LJZ,
+      _BookingSupplement : redirected to composition child Z_C_BOOKSUPPL_LJZ,
       _Carrier,
       _Connection,
       _Customer

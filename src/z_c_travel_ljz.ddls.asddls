@@ -5,8 +5,12 @@ define root view entity Z_C_TRAVEL_LJZ
   as projection on Z_I_TRAVEL_LJZ
 {
   key TravelId,
+      @ObjectModel.text.element: [ 'AgencyName' ]
       AgencyId,
+      _Agency.Name as AgencyName,
+      @ObjectModel.text.element: [ 'CustomerName' ]
       CustomerId,
+      _Customer.LastName as CustomerName,
       BeginDate,
       EndDate,
       @Semantics.amount.currencyCode: 'CurrencyCode'
