@@ -19,6 +19,7 @@ define view Z_I_BOOKSUPPL_LJZ
       price                 as Price,
       @Semantics.currencyCode: true
       currency_code         as CurrencyCode,
+      last_changed_at       as LastChangedAt,
 
       _Booking,
       _Travel,

@@ -13,10 +13,11 @@ define view entity Z_C_BOOKSUPPL_LJZ
       Price                       as Price,
       @Semantics.currencyCode: true
       CurrencyCode                as CurrencyCode,
+      LastChangedAt               as LastChangedAt,
 
       /* Associations */
-      _Travel  : redirected to z_c_travel_ljz,
-      _Booking : redirected to parent z_c_booking_ljz,
+      _Travel  : redirected to Z_C_TRAVEL_LJZ,
+      _Booking : redirected to parent Z_C_BOOKING_LJZ,
       _Product,
       _SupplementText
 }
