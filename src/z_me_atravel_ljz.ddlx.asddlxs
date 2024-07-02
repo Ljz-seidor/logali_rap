@@ -12,7 +12,7 @@
     }
 
 }
-annotate view Z_C_TRAVEL_LJZ with
+annotate view Z_C_ATRAVEL_LJZ with
 {
   @UI.facet: [ {
                  id: 'Travel',
@@ -89,7 +89,8 @@ annotate view Z_C_TRAVEL_LJZ with
         { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'Reject Travel' } ] ,
         selectionField: [ { position: 40 } ] }
   @EndUserText.label: 'Overall Status'
-  travelstatus;
+  @Search.defaultSearchElement: true
+  OverallStatus;
   
   @UI: {
   lineItem: [ { position: 45, importance: #MEDIUM } ],

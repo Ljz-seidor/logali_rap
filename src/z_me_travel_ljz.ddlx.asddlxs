@@ -93,7 +93,7 @@ annotate view Z_C_TRAVEL_LJZ with
                        identification: [ { position: 45,
                        label: 'Status [O(Open)|A(Accepted)|X(Canceled)]' }
   ] }
-  travelstatus;
+  OverallStatus;
   
   @UI.hidden: true
   LastChangedAt;

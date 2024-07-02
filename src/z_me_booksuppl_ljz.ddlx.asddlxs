@@ -50,6 +50,6 @@ annotate view Z_C_BOOKSUPPL_LJZ with
   CurrencyCode;
   
   @UI.hidden: true
-  lastchangedat;
+  LastChangedAt;
 
 }
