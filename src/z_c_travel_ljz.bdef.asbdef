@@ -10,8 +10,8 @@ use etag
   use update;
   use delete;
 
-  use action acceptTravel;
-  use action rejectTravel;
+//  use action acceptTravel;
+//  use action rejectTravel;
   use action createTravelByTemplate;
 
   use association _Booking { create; }
@@ -20,7 +20,7 @@ use etag
 define behavior for Z_C_BOOKING_LJZ alias BookingProcessor
 {
   use update;
-//  use delete;
+  use delete;
 
   use association _Travel;
   use association _BookingSupplement { create; }
@@ -29,7 +29,7 @@ define behavior for Z_C_BOOKING_LJZ alias BookingProcessor
 define behavior for Z_C_BOOKSUPPL_LJZ alias SupplementProcessor
 {
   use update;
-//  use delete;
+  use delete;
 
   use association _Travel;
   use association _Booking;

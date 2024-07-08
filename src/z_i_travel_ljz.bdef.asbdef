@@ -5,6 +5,7 @@ managed;
 define behavior for Z_I_TRAVEL_LJZ alias Travel
 implementation in class zbp_i_travel_ljz unique
 persistent table ztravel_ljz
+with additional save
 lock master
 authorization master ( instance )
 etag master LastChangedAt
@@ -13,8 +14,8 @@ etag master LastChangedAt
   // Administrative fields: read only
   field ( readonly ) LastChangedAt, LastChangedBy, CreatedAt, CreatedBy;
   //Mandatory fields that are required to create a travel
-  field ( mandatory ) AgencyId, OverallStatus, BookingFee, CurrencyCode;
-  field ( features : instance ) TravelId , OverallStatus;
+  field ( mandatory : create ) TravelId, AgencyId, OverallStatus, BookingFee, CurrencyCode;
+  field ( features : instance ) TravelId, OverallStatus;
   //  field (numbering : managed) TravelId;
 
   //Operaciones
@@ -23,9 +24,9 @@ etag master LastChangedAt
   delete;
 
   //Validaciones
-  validation validateCustomer on save { field CustomerId; }
-  validation validateDates on save { field BeginDate, EndDate; }
-  validation validateStatus on save { field OverallStatus; }
+  validation validateCustomer on save { create; field CustomerId; }
+  validation validateDates on save { create; field BeginDate, EndDate; }
+  validation validateStatus on save { create; field OverallStatus; }
 
   //Acciones
   action ( features : instance ) acceptTravel result [1] $self;
@@ -33,7 +34,7 @@ etag master LastChangedAt
   action createTravelByTemplate result [1] $self;
 
   //Asociaciones
-  association _Booking { create; }
+  association _Booking { create ( features: instance ); }
 
   //Mapeo: CDS vs Tabla Z
   //  mapping for ztravel_ljz corresponding;
@@ -66,27 +67,27 @@ authorization dependent by _Travel
 etag master LastChangedAt
 {
 
-//Fields
+  //Fields
   //Static fields control
   field ( readonly ) TravelId; //, BookingId;
   //Mandatory Fields
-  field ( mandatory ) CarrierId, ConnectionId, FlightDate, BookingStatus;
+  field ( mandatory : create ) BookingId, CarrierId, ConnectionId, FlightDate, BookingStatus;
 
-//Operaciones
+  //Operaciones
   update;
   delete;
 
-//Validaciones
-  validation validateStatus on save { field BookingStatus; }
+  //Validaciones
+  validation validateStatus on save { create; field BookingStatus; }
 
-//Asociaciones
+  //Asociaciones
   association _Travel;
-  association _BookingSupplement { create; }
+  association _BookingSupplement { create ( features: instance ); }
 
-//Determinaciones: funciones que se ejecutan al momento de modificacion o guardado
-  determination calculateFlightPrice on modify { field FlightPrice, CurrencyCode; }
+  //Determinaciones: funciones que se ejecutan al momento de modificacion o guardado
+  determination calculateTotalFlightPrice on modify { field FlightPrice, CurrencyCode; }
 
-//Mapeo
+  //Mapeo
   mapping for zbooking_ljz
     {
       TravelId      = travel_id;
@@ -115,24 +116,24 @@ authorization dependent by _Travel
 etag master LastChangedAt
 {
 
-//Operaciones
+  //Operaciones
   update;
   delete;
 
-//Campos
+  //Campos
   field ( readonly ) TravelId, BookingId; //, BookingSupplementId;
-  field ( mandatory ) SupplementId, Price;
+  field ( mandatory : create ) SupplementId, Price;
 
-//Asociaciones
+  //Asociaciones
   association _Travel;
   association _Booking;
 
-//Determinaciones
+  //Determinaciones
   determination calculateTotalSupplPrice on modify { field Price, CurrencyCode; }
 
-//Mapeo
+  //Mapeo
   mapping for zlog_ljz
-  {
-  TravelId = travel_id;
-  }
+    {
+      TravelId = travel_id;
+    }
 }
