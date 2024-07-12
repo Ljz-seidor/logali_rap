@@ -1,0 +1,5 @@
+CLASS zbp_i_employee_ljz DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF z_i_employee_ljz.
+ENDCLASS.
+
+CLASS zbp_i_employee_ljz IMPLEMENTATION.
+ENDCLASS.

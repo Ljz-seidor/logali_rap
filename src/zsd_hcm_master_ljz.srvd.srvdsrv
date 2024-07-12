@@ -1,0 +1,4 @@
+@EndUserText.label: 'HCM Master (Unmanaged)'
+define service ZSD_hcm_master_ljz {
+  expose z_c_hcm_master_ljz as HCMMaster;
+}
